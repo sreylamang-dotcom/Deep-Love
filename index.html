@@ -63,6 +63,10 @@
         .music-title {
             font-size: 14px;
             font-weight: 600;
+            max-width: 250px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
 
         .play-btn {
@@ -77,11 +81,13 @@
             align-items: center;
             justify-content: center;
             font-size: 16px;
-            transition: transform 0.2s;
+            transition: transform 0.2s, background 0.2s;
+            z-index: 1010;
         }
 
         .play-btn:hover {
             transform: scale(1.1);
+            background-color: #ad1457;
         }
 
         /* Navigation Bar */
@@ -91,6 +97,7 @@
             justify-content: center;
             padding: 12px;
             gap: 20px;
+            flex-wrap: wrap;
         }
 
         nav a {
@@ -111,11 +118,13 @@
             color: var(--primary-color);
         }
 
-        /* Settings Card Container */
+        /* Content Area */
         .container {
             max-width: 700px;
             margin: 50px auto;
             padding: 0 20px;
+            position: relative;
+            z-index: 10;
         }
 
         .card {
@@ -149,6 +158,7 @@
             font-size: 15px;
             margin-bottom: 10px;
             display: block;
+            text-align: center;
         }
 
         .file-drop-area {
@@ -157,22 +167,23 @@
             align-items: center;
             justify-content: center;
             flex-direction: column;
-            padding: 25px;
+            padding: 30px;
             border: 2px dashed var(--secondary-color);
             border-radius: 15px;
-            background-color: rgba(255,255,255,0.5);
+            background-color: rgba(255,255,255,0.6);
             cursor: pointer;
-            transition: background 0.3s;
+            transition: background 0.3s, border-color 0.3s;
         }
 
         .file-drop-area:hover {
-            background-color: rgba(244, 143, 177, 0.1);
+            background-color: rgba(244, 143, 177, 0.15);
+            border-color: var(--primary-color);
         }
 
         .file-drop-area i {
-            font-size: 35px;
+            font-size: 40px;
             color: var(--primary-color);
-            margin-bottom: 10px;
+            margin-bottom: 15px;
         }
 
         .file-input {
@@ -189,10 +200,11 @@
             font-size: 14px;
             color: var(--text-color);
             text-align: center;
+            line-height: 1.5;
             word-break: break-all;
         }
 
-        /* Floating Falling Elements */
+        /* Falling Elements */
         .falling-element {
             position: absolute;
             pointer-events: none;
@@ -219,13 +231,15 @@
             font-weight: 600;
             color: var(--primary-color);
             margin-top: 50px;
+            position: relative;
+            z-index: 10;
         }
     </style>
 </head>
 <body>
 
     <!-- Audio Element -->
-    <audio id="bg-music" loop></audio>
+    <audio id="bg-music" loop preload="auto"></audio>
 
     <!-- Top Header -->
     <header>
@@ -234,7 +248,7 @@
         </div>
         <div class="music-bar">
             <span class="music-title" id="current-track-name">គ្មានបទចម្រៀងត្រូវបានជ្រើសរើសទេ</span>
-            <button class="play-btn" id="music-control-btn" onclick="toggleMusic()">
+            <button class="play-btn" id="music-control-btn">
                 <i class="fa-solid fa-play" id="play-icon"></i>
             </button>
         </div>
@@ -242,11 +256,11 @@
 
     <!-- Navigation Bar -->
     <nav>
-        <a href="#"><i class="fa-solid fa-house"></i> ទំព័រដើម</a>
+        <a href="index.html"><i class="fa-solid fa-house"></i> ទំព័រដើម</a>
         <a href="#"><i class="fa-solid fa-image"></i> ផ្ទាំងរូបថត</a>
         <a href="#"><i class="fa-solid fa-envelope"></i> សំបុត្រអនាគត</a>
         <a href="#"><i class="fa-solid fa-calendar-days"></i> គម្រោង&ប្រាថ្នា</a>
-        <a href="#" class="active"><i class="fa-solid fa-gear"></i> កំណត់រចនា</a>
+        <a href="index.html" class="active"><i class="fa-solid fa-gear"></i> កំណត់រចនា</a>
     </nav>
 
     <!-- Content Area -->
@@ -260,7 +274,7 @@
                 <div class="file-drop-area">
                     <i class="fa-solid fa-cloud-arrow-up"></i>
                     <span class="file-msg" id="file-status-text">សូមចុចទីនេះ ដើម្បី Upload បទចម្រៀងពីឧបករណ៍របស់អ្នក</span>
-                    <input type="file" class="file-input" id="audio-file-picker" accept="audio/mp3, audio/*" onchange="handleAudioUpload(event)">
+                    <input type="file" class="file-input" id="audio-file-picker" accept="audio/mp3, audio/*">
                 </div>
             </div>
 
@@ -290,59 +304,23 @@
     <!-- Music Player Controller Script -->
     <script>
         const audio = document.getElementById('bg-music');
+        const playBtn = document.getElementById('music-control-btn');
         const playIcon = document.getElementById('play-icon');
         const trackNameDisplay = document.getElementById('current-track-name');
         const fileStatusText = document.getElementById('file-status-text');
+        const filePicker = document.getElementById('audio-file-picker');
 
-        // Load saved audio from localStorage on page load
-        window.addEventListener('DOMContentLoaded', () => {
-            const savedAudio = localStorage.getItem('custom_bg_music');
-            const savedAudioName = localStorage.getItem('custom_bg_music_name');
-            
-            if (savedAudio && savedAudioName) {
-                audio.src = savedAudio;
-                trackNameDisplay.innerText = savedAudioName;
-                fileStatusText.innerText = "បទចម្រៀងបច្ចុប្បន្ន៖ " + savedAudioName;
-            }
-        });
-
-        // Function to handle the file upload
-        function handleAudioUpload(event) {
-            const file = event.target.files[0];
-            if (file) {
-                trackNameDisplay.innerText = "កំពុងរៀបចំបទចម្រៀង...";
-                fileStatusText.innerText = "បានជ្រើសរើស៖ " + file.name;
-
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    const audioUrl = e.target.result;
-                    
-                    // Save to local storage for persistence
-                    try {
-                        localStorage.setItem('custom_bg_music', audioUrl);
-                        localStorage.setItem('custom_bg_music_name', file.name);
-                        
-                        // Set audio source and play
-                        audio.src = audioUrl;
-                        audio.play().then(() => {
-                            playIcon.className = "fa-solid fa-pause";
-                            trackNameDisplay.innerText = file.name;
-                        }).catch(err => {
-                            console.log("Auto-play blocked, waiting for user action.");
-                            playIcon.className = "fa-solid fa-play";
-                            trackNameDisplay.innerText = file.name;
-                        });
-                    } catch (error) {
-                        alert("ទំហំបទចម្រៀងធំពេក! សូមជ្រើសរើសបទចម្រៀងណាដែលមានទំហំតូចជាង 5MB ចា៎។");
-                        trackNameDisplay.innerText = "គ្មានបទចម្រៀងត្រូវបានជ្រើសរើសទេ";
-                        fileStatusText.innerText = "សូមសាកល្បងជាមួយបទចម្រៀងផ្សេងទៀត";
-                    }
-                };
-                reader.readAsDataURL(file);
-            }
+        // 1. Load saved audio from localStorage on page load
+        const savedAudio = localStorage.getItem('custom_bg_music');
+        const savedAudioName = localStorage.getItem('custom_bg_music_name');
+        
+        if (savedAudio && savedAudioName) {
+            audio.src = savedAudio;
+            trackNameDisplay.innerText = savedAudioName;
+            fileStatusText.innerHTML = "បទចម្រៀងបច្ចុប្បន្ន៖<br><strong>" + savedAudioName + "</strong>";
         }
 
-        // Toggle play and pause
+        // 2. Toggle Play/Pause Function
         function toggleMusic() {
             if (!audio.src) {
                 alert("សូមមេត្តា Upload បទចម្រៀងជាមុនសិនចា៎!");
@@ -350,13 +328,64 @@
             }
             
             if (audio.paused) {
-                audio.play();
-                playIcon.className = "fa-solid fa-pause";
+                audio.play().then(() => {
+                    playIcon.className = "fa-solid fa-pause";
+                }).catch(err => {
+                    alert("មិនអាចលេងបានទេ! សូមសាកល្បងចុចម្តងទៀត។");
+                });
             } else {
                 audio.pause();
                 playIcon.className = "fa-solid fa-play";
             }
         }
+
+        // Assign toggle event to the big pink button
+        playBtn.addEventListener('click', toggleMusic);
+
+        // 3. Handle File Upload
+        filePicker.addEventListener('change', function(event) {
+            const file = event.target.files[0];
+            if (file) {
+                trackNameDisplay.innerText = "កំពុងរៀបចំបទចម្រៀង...";
+                fileStatusText.innerText = "កំពុងដំណើរការឯកសារ...";
+
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const audioUrl = e.target.result;
+                    
+                    try {
+                        // Save to localStorage
+                        localStorage.setItem('custom_bg_music', audioUrl);
+                        localStorage.setItem('custom_bg_music_name', file.name);
+                        
+                        // Set and Play
+                        audio.src = audioUrl;
+                        trackNameDisplay.innerText = file.name;
+                        fileStatusText.innerHTML = "បានបញ្ចូលជោគជ័យ! 🎉<br><strong>" + file.name + "</strong>";
+                        
+                        // Force play directly after user interaction
+                        audio.play().then(() => {
+                            playIcon.className = "fa-solid fa-pause";
+                        }).catch(e => {
+                            playIcon.className = "fa-solid fa-play";
+                        });
+
+                    } catch (error) {
+                        alert("ទំហំបទចម្រៀងធំពេក! យោងតាមច្បាប់របស់ Browser សូមជ្រើសរើសបទចម្រៀងណាដែលមានទំហំតូចជាង 4MB ឬ 5MB ចា៎។");
+                        trackNameDisplay.innerText = "គ្មានបទចម្រៀងត្រូវបានជ្រើសរើសទេ";
+                        fileStatusText.innerText = "សូមសាកល្បងជាមួយបទចម្រៀងផ្សេងទៀត";
+                    }
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        // Enable global click to unlock audio if blocked by browser
+        document.body.addEventListener('click', function() {
+            if (audio.src && audio.paused && playIcon.className === "fa-solid fa-pause") {
+                audio.play().catch(() => {});
+            }
+        }, { once: true });
     </script>
 
     <footer>
