@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Deep Love 🪐💖</title>
-    <!-- Fonts & FontAwesome Icons -->
     <link href="https://fonts.googleapis.com/css2?family=Kantumruy+Pro:wght@300;400;600;700&family=Playfair+Display:ital,wght=0,600;1,700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
@@ -14,6 +13,7 @@
             --primary-glow: rgba(216, 27, 96, 0.4);
             --gradient: linear-gradient(135deg, #ff7494, #ff4081, #d81b60);
             --bg-soft: #ffe4e8; 
+            --text-color: #5c1d30; /* 🌸 ប្តូរអក្សរខ្មៅទៅជាពណ៌ស៊ីជម្ពូចាស់ / Deep Pink */
         }
 
         * {
@@ -25,7 +25,7 @@
 
         body {
             background-color: var(--bg-soft);
-            color: #333;
+            color: var(--text-color);
             overflow-x: hidden;
             padding-bottom: 60px;
         }
@@ -59,7 +59,7 @@
         /* Top Music Bar & Header */
         .top-bar {
             display: flex; justify-content: space-between; align-items: center;
-            padding: 15px 30px; background: white; box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            padding: 15px 30px; background: white; box-shadow: 0 4px 15px rgba(216, 27, 96, 0.08);
             position: sticky; top: 0; z-index: 100;
         }
         .logo { font-family: 'Playfair Display', serif; font-weight: bold; color: var(--primary); font-size: 1.4rem; }
@@ -87,7 +87,7 @@
         .page-content.active { display: block; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* Layout Elements */
+        /* Hero Section */
         .hero-section {
             text-align: center; padding: 60px 20px; background: white; border-radius: 30px;
             box-shadow: 0 15px 35px rgba(216, 27, 96, 0.08); margin-bottom: 30px;
@@ -95,13 +95,23 @@
         .hero-section h1 { font-family: 'Playfair Display', serif; font-size: 3rem; color: var(--primary); margin-bottom: 10px; }
         .days-badge { font-size: 1.4rem; font-weight: bold; background: #fff0f3; color: var(--primary); display: inline-block; padding: 10px 25px; border-radius: 30px; margin: 15px 0; border: 1px dashed var(--primary); }
         
-        .countdown-container { display: inline-flex; gap: 15px; margin-top: 15px; background: #333; color: white; padding: 12px 25px; border-radius: 25px; }
+        /* 🌸 កែសម្រួលប្រអប់ COUNTDOWN ទៅជាពណ៌ស៊ីជម្ពូ 🌸 */
+        .countdown-container { 
+            display: inline-flex; 
+            gap: 15px; 
+            margin-top: 15px; 
+            background: linear-gradient(135deg, #ff4081, #d81b60); /* ពណ៌ស៊ីជម្ពូ / Pink */
+            color: white; 
+            padding: 12px 25px; 
+            border-radius: 25px; 
+            box-shadow: 0 8px 20px rgba(216, 27, 96, 0.3);
+        }
         .time-block { text-align: center; min-width: 50px; }
         .time-block .unit { font-size: 1.8rem; font-weight: bold; display: block; }
-        .time-block .label { font-size: 0.75rem; color: #ccc; }
+        .time-block .label { font-size: 0.75rem; color: #ffe4e8; }
 
         /* Forms & Cards Styling */
-        .card-box { background: white; padding: 25px; border-radius: 25px; box-shadow: 0 10px 30px rgba(0,0,0,0.04); margin-bottom: 25px; }
+        .card-box { background: white; padding: 25px; border-radius: 25px; box-shadow: 0 10px 30px rgba(216, 27, 96, 0.05); margin-bottom: 25px; }
         .card-box h2 { font-size: 1.3rem; color: var(--primary); margin-bottom: 15px; display: flex; align-items: center; gap: 10px; border-bottom: 2px solid #fff0f3; padding-bottom: 8px; }
         
         .grid-2col { display: grid; grid-template-columns: 1fr 1fr; gap: 25px; }
@@ -110,7 +120,7 @@
         .input-group { margin-bottom: 15px; }
         .input-group input, .input-group textarea, .input-group select {
             width: 100%; padding: 12px 15px; border: 2px solid #ffe4e8; border-radius: 15px;
-            outline: none; font-size: 1rem; transition: 0.3s; background: #fffafb;
+            outline: none; font-size: 1rem; transition: 0.3s; background: #fffafb; color: var(--text-color);
         }
         .input-group input:focus, .input-group textarea:focus { border-color: var(--primary); background: white; box-shadow: 0 0 8px var(--primary-glow); }
         
@@ -129,12 +139,12 @@
         /* List Items */
         .list-item { display: flex; align-items: center; justify-content: space-between; padding: 12px; border-bottom: 1px solid #fff0f3; }
         .list-item-left { display: flex; align-items: center; gap: 10px; }
-        .list-item-left.completed span { text-decoration: line-through; color: #bbb; }
+        .list-item-left.completed span { text-decoration: line-through; color: #d89ba8; }
 
         /* Quiz Box */
         .quiz-card { background: #fffbfb; border: 1px dashed var(--primary); padding: 20px; border-radius: 20px; text-align: center; }
         .quiz-options { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 15px; }
-        .opt-btn { padding: 12px; background: white; border: 2px solid #ffe4e8; border-radius: 12px; cursor: pointer; font-weight: 600; transition: 0.2s; }
+        .opt-btn { padding: 12px; background: white; border: 2px solid #ffe4e8; border-radius: 12px; cursor: pointer; font-weight: 600; color: var(--text-color); transition: 0.2s; }
         .opt-btn:hover { background: var(--primary); color: white; border-color: var(--primary); }
 
         /* ====== GALLERY & ZOOM ANIMATIONS ====== */
@@ -142,28 +152,28 @@
         
         .memory-card { 
             background: white; border-radius: 20px; overflow: hidden; 
-            box-shadow: 0 8px 20px rgba(0,0,0,0.04); position: relative; 
+            box-shadow: 0 8px 20px rgba(216, 27, 96, 0.08); position: relative; 
             border: 1px solid #ffe5ec; transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
         .memory-card:hover {
             transform: translateY(-8px);
-            box-shadow: 0 15px 30px rgba(216, 27, 96, 0.15);
+            box-shadow: 0 15px 30px rgba(216, 27, 96, 0.2);
         }
 
         .slider-container { width: 100%; height: 230px; position: relative; overflow: hidden; cursor: zoom-in; }
         .slider-track { display: flex; width: 100%; height: 100%; transition: transform 0.4s ease; }
         .slide-img { min-width: 100%; height: 100%; object-fit: cover; }
-        .slider-btn { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(255,255,255,0.8); border: none; width: 32px; height: 32px; border-radius: 50%; cursor: pointer; color: var(--primary); font-weight: bold; z-index: 5; }
+        .slider-btn { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(255,255,255,0.85); border: none; width: 32px; height: 32px; border-radius: 50%; cursor: pointer; color: var(--primary); font-weight: bold; z-index: 5; }
         .prev-btn { left: 8px; } .next-btn { right: 8px; }
         .card-body { padding: 15px; }
-        .delete-btn { position: absolute; top: 15px; right: 15px; background: rgba(255,255,255,0.8); border: none; color: #ff5252; padding: 5px 8px; border-radius: 50%; cursor: pointer; z-index: 5; }
+        .delete-btn { position: absolute; top: 15px; right: 15px; background: rgba(255,255,255,0.85); border: none; color: #ff5252; padding: 5px 8px; border-radius: 50%; cursor: pointer; z-index: 5; }
 
-        /* 🔍 ផ្ទាំង Lightbox ថ្មី - កែសម្រួលឱ្យមានចលនាទន់ភ្លន់ និងព្រិលផ្ទៃក្រោយ */
+        /* 🔍 LIGHTBOX (ZOOM PHOTO) */
         .lightbox { 
             display: none; position: fixed; z-index: 2000; top:0; left:0; 
             width:100%; height:100%; 
-            background: rgba(0, 0, 0, 0.75); 
-            backdrop-filter: blur(8px); /* ធ្វើឱ្យផ្ទៃខាងក្រោយព្រិល ដើម្បីឱ្យរូបថតលេចធ្លោ */
+            background: rgba(216, 27, 96, 0.3); /* ស្រមោលព្រិលពណ៌ស៊ីជម្ពូ */
+            backdrop-filter: blur(10px); 
             align-items: center; justify-content: center; 
             opacity: 0; transition: opacity 0.4s ease;
         }
@@ -172,14 +182,11 @@
         }
         .lightbox img { 
             max-width: 90%; max-height: 85%; border-radius: 15px; 
-            box-shadow: 0 20px 50px rgba(0,0,0,0.6);
-            /* កំណត់ឱ្យរូបថតចាប់ផ្តើមពីតូច និងផ្អៀងបន្តិច */
+            box-shadow: 0 20px 50px rgba(216, 27, 96, 0.4);
             transform: scale(0.3) rotate(-5deg); 
-            /* បង្កើតចលនាបែបលោតរីកធំ (Smooth Bounce Effect) */
             transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
             cursor: zoom-out;
         }
-        /* ពេលផ្ទាំង Lightbox បើក រូបភាពនឹងរីកធំពេញទំហំភ្លាមៗ */
         .lightbox.show img {
             transform: scale(1) rotate(0deg);
         }
@@ -198,16 +205,14 @@
     <audio id="audioPlayer" loop></audio>
     <div class="dynamic-bg" id="dynamicBg"></div>
 
-    <!-- Top Status Bar -->
     <div class="top-bar">
         <div class="logo"><i class="fas fa-heartbeat"></i> Deep Love</div>
         <div class="music-mini-player">
-            <span id="musicTitle" style="font-size:0.8rem; color:#666;">តន្ត្រីបន្ធូរអារម្មណ៍ 🎧</span>
+            <span id="musicTitle" style="font-size:0.8rem; color:#883b51;">តន្ត្រីបន្ធូរអារម្មណ៍ 🎧</span>
             <button class="play-btn" id="musicBtn"><i class="fas fa-play" id="playIcon"></i></button>
         </div>
     </div>
 
-    <!-- 🧭 NAVIGATION MENU -->
     <nav class="nav-menu">
         <div class="nav-item active" onclick="switchPage('home')"><i class="fas fa-home"></i> ទំព័រដើម</div>
         <div class="nav-item" onclick="switchPage('gallery')"><i class="fas fa-images"></i> ផ្ទាំងរូបថត</div>
@@ -216,12 +221,11 @@
         <div class="nav-item" onclick="switchPage('settings')"><i class="fas fa-cog"></i> កំណត់រចនា</div>
     </nav>
 
-    <!-- ==================== PAGE 1: HOME ==================== -->
     <div id="home" class="page-content active">
         <div class="hero-section">
             <h1>Our Beautiful Journey</h1>
             <div class="days-badge" id="daysCounter">យើងស្រឡាញ់គ្នាបាន -- ថ្ងៃហើយ 💖</div>
-            <p style="color:#666;"><i class="fas fa-hourglass-half"></i> រាប់ថយក្រោយទៅកាន់ថ្ងៃខួប ១ ឆ្នាំ (1st Anniversary)</p>
+            <p style="color:#883b51;"><i class="fas fa-hourglass-half"></i> រាប់ថយក្រោយទៅកាន់ថ្ងៃខួប ១ ឆ្នាំ (1st Anniversary)</p>
             <div class="countdown-container">
                 <div class="time-block"><span class="unit" id="cd-days">00</span><span class="label">ថ្ងៃ</span></div>
                 <div class="time-block"><span class="unit" id="cd-hours">00</span><span class="label">ម៉ោង</span></div>
@@ -231,24 +235,22 @@
         </div>
 
         <div class="grid-2col">
-            <!-- Mood Tracker -->
             <div class="card-box">
                 <h2><i class="fas fa-smile-beam"></i> កំណត់ហេតុអារម្មណ៍ប្រចាំថ្ងៃ</h2>
-                <p style="font-size:0.85rem; color:#777;">ចុចរើស Emoji ដើម្បីប្រាប់ដៃគូពីអារម្មណ៍ពិតរបស់អ្នកនៅថ្ងៃនេះ៖</p>
+                <p style="font-size:0.85rem; color:#883b51;">ចុចរើស Emoji ដើម្បីប្រាប់ដៃគូពីអារម្មណ៍ពិតរបស់អ្នកនៅថ្ងៃនេះ៖</p>
                 <div class="mood-flex">
                     <button class="mood-btn" onclick="saveMood('😊', 'រីករាយ / Happy')">😊</button>
                     <button class="mood-btn" onclick="saveMood('💖', 'នឹកគ្នា / Loving')">💖</button>
                     <button class="mood-btn" onclick="saveMood('🥱', 'អស់កម្លាំង / Tired')">🥱</button>
                     <button class="mood-btn" onclick="saveMood('😡', 'ងក់ងរ / Sulky')">😡</button>
                 </div>
-                <div id="moodOutput" style="text-align:center; font-weight:bold; color:#555; margin-top:10px;">អារម្មណ៍ថ្ងៃនេះ៖ មិនទាន់កំណត់ 🤷</div>
+                <div id="moodOutput" style="text-align:center; font-weight:bold; color:var(--primary); margin-top:10px;">អារម្មណ៍ថ្ងៃនេះ៖ មិនទាន់កំណត់ 🤷</div>
             </div>
 
-            <!-- Quiz Inside Home -->
             <div class="card-box">
                 <h2><i class="fas fa-gamepad"></i> ហ្គេមទាយចិត្ត (Love Quiz)</h2>
                 <div class="quiz-card">
-                    <p id="quizQ" style="font-weight:600; color:#444;">សំណួរកំពុងដំណើរការ...</p>
+                    <p id="quizQ" style="font-weight:600; color:var(--text-color);">សំណួរកំពុងដំណើរការ...</p>
                     <div class="quiz-options" id="quizOpts"></div>
                     <p id="quizFeedback" style="margin-top:12px; font-weight:bold; color:var(--primary); font-size:0.9rem;"></p>
                 </div>
@@ -256,7 +258,6 @@
         </div>
     </div>
 
-    <!-- ==================== PAGE 2: GALLERY ==================== -->
     <div id="gallery" class="page-content">
         <div class="card-box">
             <h2><i class="fas fa-camera-retro"></i> បង្ហោះរូបថតអនុស្សាវរីយ៍ថ្មី</h2>
@@ -277,29 +278,26 @@
         <div class="gallery-grid" id="galleryWrapper"></div>
     </div>
 
-    <!-- ==================== PAGE 3: FUTURE LETTERS ==================== -->
     <div id="future" class="page-content">
         <div class="card-box">
             <h2><i class="fas fa-user-lock"></i> សរសេរសំបុត្រចាក់សោរទៅកាន់អនាគត</h2>
-            <p style="font-size:0.85rem; color:#666; margin-bottom:15px;">សរសេរសារផ្អែមល្ហែម រួចកំណត់ថ្ងៃបើកមើល។ ដៃគូរបស់អ្នកមិនអាចមើលឃើញមុនកាលកំណត់បានឡើយ!</p>
+            <p style="font-size:0.85rem; color:#883b51; margin-bottom:15px;">សរសេរសារផ្អែមល្ហែម រួចកំណត់ថ្ងៃបើកមើល។ ដៃគូរបស់អ្នកមិនអាចមើលឃើញមុនកាលកំណត់បានឡើយ!</p>
             <form id="letterForm">
                 <div class="input-group"><textarea id="letterContent" rows="4" placeholder="សរសេរសារសម្ងាត់ផ្ញើទៅកាន់អនាគត..." required></textarea></div>
                 <div class="input-group">
-                    <label style="font-size:0.85rem; color:#555; font-weight:600;">កំណត់ថ្ងៃអនុញ្ញាតឱ្យបើកមើល៖</label>
+                    <label style="font-size:0.85rem; color:#883b51; font-weight:600;">កំណត់ថ្ងៃអនុញ្ញាតឱ្យបើកមើល៖</label>
                     <input type="date" id="unlockDate" required>
                 </div>
                 <button type="submit" class="btn-glow">ចាក់សោលិខិតសម្ងាត់ 🔒</button>
             </form>
         </div>
 
-        <h2><i class="fas fa-boxes"></i> ប្រអប់សំបុត្រពេលវេលា (Time Capsules)</h2>
+        <h2 style="color:var(--primary);"><i class="fas fa-boxes"></i> ប្រអប់សំបុត្រពេលវេលា (Time Capsules)</h2>
         <div id="lettersContainer" style="margin-top:15px; display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:20px;"></div>
     </div>
 
-    <!-- ==================== PAGE 4: PLANNER ==================== -->
     <div id="planner" class="page-content">
         <div class="grid-2col">
-            <!-- Love Calendar -->
             <div class="card-box">
                 <h2><i class="fas fa-calendar-check"></i> ថ្ងៃពិសេសៗរបស់យើង (Love Calendar)</h2>
                 <form id="calendarForm" style="display:flex; gap:8px; margin-bottom:15px;">
@@ -310,7 +308,6 @@
                 <div id="calendarList"></div>
             </div>
 
-            <!-- Bucket List -->
             <div class="card-box">
                 <h2><i class="fas fa-star"></i> បញ្ជីប្រាថ្នារួមគ្នា (Couple Bucket List)</h2>
                 <form id="bucketForm" style="display:flex; gap:8px; margin-bottom:15px;">
@@ -322,26 +319,24 @@
         </div>
     </div>
 
-    <!-- ==================== PAGE 5: SETTINGS ==================== -->
     <div id="settings" class="page-content">
         <div class="card-box" style="max-width:600px; margin: 0 auto;">
             <h2><i class="fas fa-sliders-h"></i> កំណត់រចនាវេបសាយ និងតន្ត្រី</h2>
             <form id="musicForm" style="margin-bottom:25px;">
                 <div class="input-group">
-                    <label style="font-size:0.85rem; font-weight:600; color:#555;">ផ្លាស់ប្តូរតន្ត្រីផ្ទៃក្រោយ (លីងប្រភេទ .mp3)៖</label>
+                    <label style="font-size:0.85rem; font-weight:600; color:#883b51;">ផ្លាស់ប្តូរតន្ត្រីផ្ទៃក្រោយ (លីងប្រភេទ .mp3)៖</label>
                     <input type="text" id="musicUrlInput" placeholder="ផុសលីងបទចម្រៀងប្រភេទ .mp3 រួចចុចរក្សាទុក..." required>
                 </div>
-                <button type="submit" class="btn-glow" style="background:#7b1fa2;">ប្តូរបទចម្រៀងថ្មី 🎵</button>
+                <button type="submit" class="btn-glow">ប្តូរបទចម្រៀងថ្មី 🎵</button>
             </form>
             <hr style="border:0; border-top:1px dashed #ffe4e8; margin:20px 0;">
             <div style="text-align:center;">
-                <p style="font-size:0.9rem; color:#666; margin-bottom:10px;">អរគុណប្អូនស្រីសម្រាប់ការបង្កើតពិភពលោកដ៏ផ្អែមល្ហែមមួយនេះ!</p>
+                <p style="font-size:0.9rem; color:#883b51; margin-bottom:10px;">អរគុណប្អូនស្រីសម្រាប់ការបង្កើតពិភពលោកដ៏ផ្អែមល្ហែមមួយនេះ!</p>
                 <i class="fas fa-glass-cheers" style="font-size:2rem; color:var(--primary);"></i>
             </div>
         </div>
     </div>
 
-    <!-- 🔍 Lightbox សម្រាប់ពង្រីករូបថតមើល -->
     <div class="lightbox" id="lightbox">
         <span class="lightbox-close">&times;</span>
         <img id="lightboxImg" src="" alt="Zoomed View">
@@ -434,8 +429,8 @@
                         ${sliderHtml}
                         <div class="card-body">
                             <h3 style="color:var(--primary); font-size:1.1rem;">${item.title}</h3>
-                            <div style="font-size:0.75rem; color:#aaa; margin:5px 0;"><i class="far fa-calendar-alt"></i> ${item.date}</div>
-                            <p style="font-size:0.85rem; color:#555; line-height:1.5;">${item.desc}</p>
+                            <div style="font-size:0.75rem; color:#d89ba8; margin:5px 0;"><i class="far fa-calendar-alt"></i> ${item.date}</div>
+                            <p style="font-size:0.85rem; color:var(--text-color); line-height:1.5;">${item.desc}</p>
                             <button class="delete-btn" onclick="deleteMemory(${index})"><i class="fas fa-trash"></i></button>
                         </div>
                     `;
@@ -484,7 +479,7 @@
                 }
             };
 
-            // === 🔍 មុខងារចុចពង្រីក និង ពង្រួមរូបថត (ZOOM INTERACTION) ===
+            // === 🔍 ZOOM INTERACTION ===
             const lightbox = document.getElementById("lightbox");
             const lightboxImg = document.getElementById("lightboxImg");
 
@@ -517,13 +512,13 @@
                     const box = document.createElement("div");
                     box.style.cssText = "background:white; padding:15px; border-radius:15px; border:1px solid #fcd5db; position:relative;";
                     box.innerHTML = `
-                        <div style="font-size:0.75rem; color:#aaa; margin-bottom:8px; display:flex; justify-content:between;">
+                        <div style="font-size:0.75rem; color:#d89ba8; margin-bottom:8px; display:flex; justify-content:between;">
                             <span>🔓 ថ្ងៃបើក៖ ${l.unlockDate}</span>
                         </div>
-                        <p style="color:${isLocked?'#aaa':'#333'}; font-style:${isLocked?'italic':'normal'}; font-size:0.9rem;">
+                        <p style="color:${isLocked?'#d89ba8':'var(--text-color)'}; font-style:${isLocked?'italic':'normal'}; font-size:0.9rem;">
                             ${isLocked ? "🔒 សំបុត្រនេះត្រូវបានចាក់សោរយ៉ាងជិត។ មិនទាន់ដល់ថ្ងៃកំណត់បើកមើលទេចា៎!" : l.content}
                         </p>
-                        <button onclick="deleteLetter(${index})" style="position:absolute; bottom:10px; right:10px; background:none; border:none; color:red; cursor:pointer;"><i class="fas fa-trash-alt"></i></button>
+                        <button onclick="deleteLetter(${index})" style="position:absolute; bottom:10px; right:10px; background:none; border:none; color:#ff5252; cursor:pointer;"><i class="fas fa-trash-alt"></i></button>
                     `;
                     lettersContainer.appendChild(box);
                 });
@@ -557,7 +552,7 @@
                     div.classList.add("list-item");
                     div.innerHTML = `
                         <div class="list-item-left"><span><b>${ev.date}</b> - ${ev.title}</span></div>
-                        <button style="border:none; background:none; color:red; cursor:pointer;" onclick="deleteEvent(${index})"><i class="fas fa-minus-circle"></i></button>
+                        <button style="border:none; background:none; color:#ff5252; cursor:pointer;" onclick="deleteEvent(${index})"><i class="fas fa-minus-circle"></i></button>
                     `;
                     calendarList.appendChild(div);
                 });
@@ -594,7 +589,7 @@
                             <input type="checkbox" ${b.done?'checked':''} onchange="toggleBucket(${index})">
                             <span>${b.text}</span>
                         </div>
-                        <button style="border:none; background:none; color:red; cursor:pointer;" onclick="deleteBucket(${index})"><i class="fas fa-trash"></i></button>
+                        <button style="border:none; background:none; color:#ff5252; cursor:pointer;" onclick="deleteBucket(${index})"><i class="fas fa-trash"></i></button>
                     `;
                     bucketList.appendChild(div);
                 });
